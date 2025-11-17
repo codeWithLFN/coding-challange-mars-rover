@@ -1,12 +1,15 @@
 package com.coding.challange.codingchallangemarsrover.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
-@Data
+
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Slf4j
 public class Rover {
     private int x;
     private int y;
@@ -92,6 +95,9 @@ public class Rover {
         if (plateau.isInside(newX, newY)) {
             x = newX;
             y = newY;
+        } else {
+            log.info("Rover cannot move outside the plateau: attempted move to ({}, {}) from ({}, {})",
+                    newX, newY, x, y);
         }
     }
 
